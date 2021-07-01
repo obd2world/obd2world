@@ -376,11 +376,13 @@ if PARALLEL == "1":
 
 else:
   res=""
+  count=0
   for index, row in df_test.iterrows():
     #print(str(row[0]) + " " + str(get_predictions_sentence(model, clean_data(row[1]))) + " " + str(row[1]))
     class_p=get_predictions_sentence(model, clean_data(row[1]))
 
-    if (class_names[class_p] != str(row[0])):
-      res = res + str(class_names[class_p]) + " " + str(row[0])  + " " + str(clean_data(row[1]))
-      print(str(class_names[class_p]) + " " + str(row[0])  + " " + str(clean_data(row[1])))
-print(res)
+    if (class_names[class_p] != class_names[int(row[0]])):
+      count=count+1
+      res = res + str(class_names[class_p]) + " " + str(row[0]) # + " " + str(clean_data(row[1]))
+      print(str(class_names[class_p]) + " " + str(row[0]) # + " " + str(clean_data(row[1])))
+print(str(count)))
