@@ -375,6 +375,7 @@ if PARALLEL == "1":
   print(classification_report(y_test, y_pred, target_names=class_names))
 
 else:
+  res=""
   for index, row in df_test.iterrows():
     #print(str(row[0]) + " " + str(get_predictions_sentence(model, clean_data(row[1]))) + " " + str(row[1]))
     class_p=get_predictions_sentence(model, clean_data(row[1]))
