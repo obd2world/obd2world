@@ -381,7 +381,7 @@ else:
     #print(str(row[0]) + " " + str(get_predictions_sentence(model, clean_data(row[1]))) + " " + str(row[1]))
     class_p=get_predictions_sentence(model, clean_data(row[1]))
 
-    if (class_names[class_p] != class_names[int(row[0]])):
+    if (class_names[class_p] != class_names[int(row[0])]):
       count=count+1
       res = res + str(class_names[class_p]) + " " + str(row[0]) # + " " + str(clean_data(row[1]))
       print(str(class_names[class_p]) + " " + str(row[0]) # + " " + str(clean_data(row[1])))
