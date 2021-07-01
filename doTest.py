@@ -384,5 +384,5 @@ else:
     if (class_names[class_p] != class_names[int(row[0])]):
       count=count+1
       res = res + str(class_names[class_p]) + " " + str(row[0]) # + " " + str(clean_data(row[1]))
-      print(str(class_names[class_p]) + " " + str(row[0]) # + " " + str(clean_data(row[1])))
-print(str(count)))
+      print(str(class_names[class_p]) + " " + str(class_names[int(row[0])])) # + " " + str(clean_data(row[1])))
+print(str(count))
