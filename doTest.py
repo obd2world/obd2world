@@ -28,6 +28,10 @@ import os
 #parameters
 TASK=  "pec" #"bertvaloriale" #"bertsentiment" # "bertemotions"   #   "bertsentiment"
 
+
+PARALLEL="0"
+
+
 ENCODE="utf-8"
 #RANDOM_SEED = 42
 BASEPATH='./'
@@ -357,17 +361,25 @@ def get_predictions_sentence(model, sentence):
     #print(sentence)
     #print(probs)
     
-    return probs
+    return pred
 
 
-y_review_texts, y_pred, y_pred_probs, y_test = get_predictions(
-  model,
-  test_data_loader
-)
+if PARALLEL == "1":
 
-print(y_review_texts)
-print(y_pred)
-print(y_test)
+  y_review_texts, y_pred, y_pred_probs, y_test = get_predictions(
+    model,
+    test_data_loader
+  )
 
 
-print(classification_report(y_test, y_pred, target_names=class_names))
+  print(classification_report(y_test, y_pred, target_names=class_names))
+
+else:
+  for index, row in df_test.iterrows():
+    #print(str(row[0]) + " " + str(get_predictions_sentence(model, clean_data(row[1]))) + " " + str(row[1]))
+    class_p=get_predictions_sentence(model, clean_data(row[1]))
+    
+    if (class_names[class_p] != str(row[0])):
+      res = res + str(class_names[class_p]) + " " + str(row[0])  + " " + str(clean_data(row[1]))
+      print(str(class_names[class_p]) + " " + str(row[0])  + " " + str(clean_data(row[1])))
+print(res)
