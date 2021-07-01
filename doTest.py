@@ -330,7 +330,7 @@ def get_predictions_sentence(model, sentence):
     d = tokenizer.encode_plus(
     sentence,
     add_special_tokens=True,
-    max_length=MAX_LEN,
+    max_length=MAXLEN,
     return_token_type_ids=False,
     pad_to_max_length=True,
     return_attention_mask=True,
