@@ -285,16 +285,6 @@ print(MODELFILENAME)
 
 
 
-test_acc, _ = eval_model(
-  model,
-  test_data_loader,
-  loss_fn,
-  device,
-  len(df_test)
-)
-
-test_acc.item()
-
 
 def get_predictions(model, data_loader):
   model = model.eval()
@@ -366,6 +356,16 @@ def get_predictions_sentence(model, sentence):
 
 if PARALLEL == "1":
 
+  test_acc, _ = eval_model(
+    model,
+    test_data_loader,
+    loss_fn,
+    device,
+    len(df_test)
+  )
+
+  test_acc.item()
+
   y_review_texts, y_pred, y_pred_probs, y_test = get_predictions(
     model,
     test_data_loader
@@ -378,7 +378,7 @@ else:
   for index, row in df_test.iterrows():
     #print(str(row[0]) + " " + str(get_predictions_sentence(model, clean_data(row[1]))) + " " + str(row[1]))
     class_p=get_predictions_sentence(model, clean_data(row[1]))
-    
+
     if (class_names[class_p] != str(row[0])):
       res = res + str(class_names[class_p]) + " " + str(row[0])  + " " + str(clean_data(row[1]))
       print(str(class_names[class_p]) + " " + str(row[0])  + " " + str(clean_data(row[1])))
