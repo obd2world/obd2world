@@ -378,13 +378,13 @@ else:
   res=""
   count=0
   with open(BASEPATH + TASK + '/test_missed.tsv', "w") as f:
-    for s in row:
-      f.write(str(s) + "\n")
-  for index, row in df_test.iterrows():
-    #print(str(row[0]) + " " + str(get_predictions_sentence(model, clean_data(row[1]))) + " " + str(row[1]))
-    class_p=get_predictions_sentence(model, clean_data(row[1]))
+    for index, row in df_test.iterrows():
+      #print(str(row[0]) + " " + str(get_predictions_sentence(model, clean_data(row[1]))) + " " + str(row[1]))
+      class_p=get_predictions_sentence(model, clean_data(row[1]))
 
-    if (class_names[class_p] != class_names[int(row[0])]):
-      count=count+1
-      res = res + str(class_names[class_p]) + "\t" + str(row[0]) + "\t" + str(clean_data(row[1]))
-      print(str(count))
+      if (class_names[class_p] != class_names[int(row[0])]):
+        count=count+1
+        res = res + str(class_names[class_p]) + "\t" + str(row[0]) + "\t" + str(clean_data(row[1]))
+        f.write(str(res) + "\n")
+
+        print(str(count))
